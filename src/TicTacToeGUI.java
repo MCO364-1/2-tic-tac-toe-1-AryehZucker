@@ -31,6 +31,9 @@ public class TicTacToeGUI {
 
     private void addNewGameButton() {
         newGameButton = new JButton("New Game");
+        newGameButton.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 36));
+        newGameButton.setBackground(new Color(50, 50, 200));
+        newGameButton.setForeground(new Color(220, 220, 220));
         window.add(newGameButton, BorderLayout.NORTH);
     }
 
@@ -40,15 +43,22 @@ public class TicTacToeGUI {
         for (int row = 0; row < GRID_SIZE; row++) {
             for (int col = 0; col < GRID_SIZE; col++) {
                 JButton button = new JButton();
+                button.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 60));
+                button.setBackground(new Color(40, 40, 60));
+                button.setForeground(new Color(200, 200, 200));
                 grid[row][col] = button;
                 gridPanel.add(button);
             }
         }
-        window.add(gridPanel);
+        window.add(gridPanel, BorderLayout.CENTER);
     }
 
     private void addStatusBar() {
         statusBar = new JLabel();
+        statusBar.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 30));
+        statusBar.setOpaque(true);
+        statusBar.setBackground(new Color(100, 255, 100));
+        statusBar.setHorizontalAlignment(SwingConstants.CENTER);
         window.add(statusBar, BorderLayout.SOUTH);
     }
 
