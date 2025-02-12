@@ -27,12 +27,12 @@ public class Main {
         board.placePiece(row, col, currentPlayer);
         gui.setSpace(row, col, currentPlayer.toString());
 
-        if (board.isFull()) {
-            gameOver = true;
-            gui.displayDraw();
-        } else if (board.has3InARow()) {
+        if (board.has3InARow()) {
             gameOver = true;
             gui.displayWinner(currentPlayer.toString());
+        } else if (board.isFull()) {
+            gameOver = true;
+            gui.displayDraw();
         } else {
             switchPlayer();
             gui.showCurrentPlayer(currentPlayer.toString());
