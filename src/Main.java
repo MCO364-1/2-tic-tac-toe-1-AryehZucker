@@ -16,7 +16,7 @@ public class Main {
         board = new Board();
         currentPlayer = Piece.X;
         gameOver = false;
-        gui.showCurrentPlayer(currentPlayer.toString());
+        gui.displayCurrentPlayer(currentPlayer.toString());
         gui.clearGrid();
     }
 
@@ -35,7 +35,7 @@ public class Main {
             gui.displayDraw();
         } else {
             switchPlayer();
-            gui.showCurrentPlayer(currentPlayer.toString());
+            gui.displayCurrentPlayer(currentPlayer.toString());
         }
     }
 

@@ -5,10 +5,11 @@ import javax.swing.*;
 
 public class TicTacToeGUI {
     private static final int GRID_SIZE = 3;
+
     private JFrame window = new JFrame();
     private JButton newGameButton;
-    private JLabel statusBar;
     private JButton[][] grid = new JButton[GRID_SIZE][GRID_SIZE];
+    private JLabel statusBar;
 
     public TicTacToeGUI() {
         configureWindow();
@@ -20,10 +21,10 @@ public class TicTacToeGUI {
         window.setSize(500, 500);
         window.setTitle("Tic Tac Toe");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setLayout(new BorderLayout());
     }
 
     private void constructUI() {
+        window.setLayout(new BorderLayout());
         addNewGameButton();
         addGrid();
         addStatusBar();
@@ -66,18 +67,6 @@ public class TicTacToeGUI {
         newGameButton.addActionListener((e) -> newGameTask.run());
     }
 
-    public void showCurrentPlayer(String player) {
-        statusBar.setText(player + "'s turn");
-    }
-
-    public void clearGrid() {
-        for (JButton[] buttonRow : grid) {
-            for (JButton button : buttonRow) {
-                button.setText("");
-            }
-        }
-    }
-
     public void onMove(BiConsumer<Integer, Integer> moveTask) {
         for (int row = 0; row < GRID_SIZE; row++) {
             for (int col = 0; col < GRID_SIZE; col++) {
@@ -87,8 +76,8 @@ public class TicTacToeGUI {
         }
     }
 
-    public void setSpace(int row, int col, String player) {
-        grid[row][col].setText(player);
+    public void displayCurrentPlayer(String player) {
+        statusBar.setText(player + "'s turn");
     }
 
     public void displayWinner(String player) {
@@ -97,5 +86,17 @@ public class TicTacToeGUI {
 
     public void displayDraw() {
         statusBar.setText("Draw");
+    }
+
+    public void setSpace(int row, int col, String player) {
+        grid[row][col].setText(player);
+    }
+
+    public void clearGrid() {
+        for (JButton[] row : grid) {
+            for (JButton button : row) {
+                button.setText("");
+            }
+        }
     }
 }
