@@ -76,20 +76,20 @@ public class TicTacToeGUI {
         }
     }
 
-    public void displayCurrentPlayer(String player) {
-        statusBar.setText(player + "'s turn");
+    public void displayCurrentPlayer(String playerName) {
+        statusBar.setText(playerName + "'s turn");
     }
 
-    public void displayWinner(String player) {
-        statusBar.setText(player + " wins!");
+    public void displayWinner(String playerName) {
+        statusBar.setText(playerName + " wins!");
     }
 
     public void displayDraw() {
         statusBar.setText("Draw");
     }
 
-    public void setSpace(int row, int col, String player) {
-        grid[row][col].setText(player);
+    public void setSpace(int row, int col, String playerName) {
+        grid[row][col].setText(playerName.toString());
     }
 
     public void clearGrid() {

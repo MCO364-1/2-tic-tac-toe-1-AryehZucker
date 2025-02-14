@@ -1,13 +1,13 @@
 public class Board {
     private static final int SIZE = 3;
-    private Piece[][] pieces = new Piece[SIZE][SIZE];
+    private Player[][] pieces = new Player[SIZE][SIZE];
 
-    public Piece getPiece(int row, int col) {
+    public Player getPiece(int row, int col) {
         validatePosition(row, col);
         return pieces[row][col];
     }
 
-    public void placePiece(int row, int col, Piece p) {
+    public void placePiece(int row, int col, Player p) {
         validatePosition(row, col);
         ensureVacant(row, col);
         pieces[row][col] = p;

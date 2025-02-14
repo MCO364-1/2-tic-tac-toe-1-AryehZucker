@@ -16,8 +16,8 @@ public class BoardTest {
 
     @Test
     public void testPlaceAndGetPiece() {
-        board.placePiece(0, 0, Piece.X);
-        assertEquals(board.getPiece(0, 0), Piece.X);
+        board.placePiece(0, 0, Player.X);
+        assertEquals(board.getPiece(0, 0), Player.X);
     }
 
     @Test
@@ -28,15 +28,15 @@ public class BoardTest {
 
     @Test
     public void testPlacePieceOutOfBounds() {
-        assertThrows(IllegalArgumentException.class, () -> board.placePiece(0, 3, Piece.X));
-        assertThrows(IllegalArgumentException.class, () -> board.placePiece(-1, 2, Piece.X));
+        assertThrows(IllegalArgumentException.class, () -> board.placePiece(0, 3, Player.X));
+        assertThrows(IllegalArgumentException.class, () -> board.placePiece(-1, 2, Player.X));
     }
 
     @Test
     public void testPlacePieceOnExistingPiece() {
-        board.placePiece(0, 0, Piece.X);
-        assertThrows(IllegalArgumentException.class, () -> board.placePiece(0, 0, Piece.X));
-        assertThrows(IllegalArgumentException.class, () -> board.placePiece(0, 0, Piece.O));
+        board.placePiece(0, 0, Player.X);
+        assertThrows(IllegalArgumentException.class, () -> board.placePiece(0, 0, Player.X));
+        assertThrows(IllegalArgumentException.class, () -> board.placePiece(0, 0, Player.O));
     }
 
     @Test
@@ -49,55 +49,55 @@ public class BoardTest {
     private void fillBoard() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                board.placePiece(i, j, Piece.X);
+                board.placePiece(i, j, Player.X);
             }
         }
     }
 
     @Test
     public void testHas3InARowNone() {
-        board.placePiece(1, 1, Piece.X);
-        board.placePiece(0, 1, Piece.O);
+        board.placePiece(1, 1, Player.X);
+        board.placePiece(0, 1, Player.O);
         assertFalse(board.has3InARow());
     }
 
     @Test
     public void testHas3InARowDifferent() {
-        board.placePiece(0, 0, Piece.O);
-        board.placePiece(0, 1, Piece.X);
-        board.placePiece(0, 2, Piece.O);
+        board.placePiece(0, 0, Player.O);
+        board.placePiece(0, 1, Player.X);
+        board.placePiece(0, 2, Player.O);
         assertFalse(board.has3InARow());
     }
 
     @Test
     public void testHas3InARowHorizontal() {
-        board.placePiece(0, 0, Piece.X);
-        board.placePiece(0, 1, Piece.X);
-        board.placePiece(0, 2, Piece.X);
+        board.placePiece(0, 0, Player.X);
+        board.placePiece(0, 1, Player.X);
+        board.placePiece(0, 2, Player.X);
         assertTrue(board.has3InARow());
     }
 
     @Test
     public void testHas3InARowVertical() {
-        board.placePiece(0, 0, Piece.X);
-        board.placePiece(1, 0, Piece.X);
-        board.placePiece(2, 0, Piece.X);
+        board.placePiece(0, 0, Player.X);
+        board.placePiece(1, 0, Player.X);
+        board.placePiece(2, 0, Player.X);
         assertTrue(board.has3InARow());
     }
 
     @Test
     public void testHas3InARowDiagonal1() {
-        board.placePiece(0, 0, Piece.X);
-        board.placePiece(1, 1, Piece.X);
-        board.placePiece(2, 2, Piece.X);
+        board.placePiece(0, 0, Player.X);
+        board.placePiece(1, 1, Player.X);
+        board.placePiece(2, 2, Player.X);
         assertTrue(board.has3InARow());
     }
 
     @Test
     public void testHas3InARowDiagonal2() {
-        board.placePiece(0, 2, Piece.X);
-        board.placePiece(1, 1, Piece.X);
-        board.placePiece(2, 0, Piece.X);
+        board.placePiece(0, 2, Player.X);
+        board.placePiece(1, 1, Player.X);
+        board.placePiece(2, 0, Player.X);
         assertTrue(board.has3InARow());
     }
 }

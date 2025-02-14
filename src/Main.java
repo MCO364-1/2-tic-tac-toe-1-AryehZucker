@@ -1,45 +1,37 @@
 public class Main {
-    private static Board board;
-    private static Piece currentPlayer;
     private static TicTacToeGUI gui;
-    private static boolean gameOver;
+    private static TicTacToeGame game;
 
     public static void main(String[] args) {
+        game = new TicTacToeGame();
         gui = new TicTacToeGUI();
-        gui.onNewGame(Main::reset);
-        gui.onMove(Main::makeMove);
 
-        reset();
+        gui.onNewGame(Main::start);
+        gui.onMove(Main::move);
+
+        start();
     }
 
-    private static void reset() {
-        board = new Board();
-        currentPlayer = Piece.X;
-        gameOver = false;
-        gui.displayCurrentPlayer(currentPlayer.toString());
+    private static void start() {
+        game = new TicTacToeGame();
+        gui.displayCurrentPlayer(game.getCurrentPlayerName());
         gui.clearGrid();
     }
 
-    private static void makeMove(int row, int col) {
-        if (gameOver || board.getPiece(row, col) != null)
-            return;
-
-        board.placePiece(row, col, currentPlayer);
-        gui.setSpace(row, col, currentPlayer.toString());
-
-        if (board.has3InARow()) {
-            gameOver = true;
-            gui.displayWinner(currentPlayer.toString());
-        } else if (board.isFull()) {
-            gameOver = true;
-            gui.displayDraw();
-        } else {
-            switchPlayer();
-            gui.displayCurrentPlayer(currentPlayer.toString());
-        }
+    private static void move(int row, int col) {
+        Player player = game.makeMove(row, col);
+        if (player != null)
+            gui.setSpace(row, col, player.toString());
+        updateStatusBar();
     }
 
-    private static void switchPlayer() {
-        currentPlayer = (currentPlayer == Piece.X) ? Piece.O : Piece.X;
+    private static void updateStatusBar() {
+        if (game.isWon()) {
+            gui.displayWinner(game.getCurrentPlayerName());
+        } else if (game.isDraw()) {
+            gui.displayDraw();
+        } else {
+            gui.displayCurrentPlayer(game.getCurrentPlayerName());
+        }
     }
 }
